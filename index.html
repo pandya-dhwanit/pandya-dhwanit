@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhwanit Pandya | Student Portfolio</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #080b18;
+            --card: rgba(255,255,255,0.07);
+            --card-border: rgba(255,255,255,0.14);
+            --text: #f5f7ff;
+            --muted: #aab2ca;
+            --primary: #7c5cff;
+            --secondary: #20bfff;
+            --input: #11172b;
+        }
+
+        body.light {
+            --bg: #f1f4fb;
+            --card: rgba(255,255,255,0.8);
+            --card-border: rgba(20,30,70,0.12);
+            --text: #11182d;
+            --muted: #59627a;
+            --input: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(124,92,255,0.22), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(32,191,255,0.15), transparent 28%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(8,11,24,0.78);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        body.light header {
+            background: rgba(241,244,251,0.8);
+        }
+
+        nav {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .theme-btn,
+        .menu-btn {
+            border: 1px solid var(--card-border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        section {
+            padding: 90px 0 20px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 50px;
+            padding-top: 120px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 30px;
+            color: var(--secondary);
+            background: rgba(32,191,255,0.1);
+            border: 1px solid rgba(32,191,255,0.3);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 6vw, 72px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 20px;
+            margin-bottom: 18px;
+            color: var(--muted);
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(32,191,255,0.18);
+        }
+
+        .profile-card,
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(18px);
+            transition: 0.3s;
+        }
+
+        .profile-card {
+            text-align: center;
+        }
+
+        .profile-card:hover,
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(32,191,255,0.5);
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            font-size: 52px;
+            font-weight: 800;
+            color: white;
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .profile-card h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .profile-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .about-text {
+            color: var(--muted);
+            max-width: 900px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .card p,
+        .card li {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            margin: 9px 0;
+        }
+
+        .skill {
+            margin: 14px 0;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .bar {
+            height: 7px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.12);
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+
+        .timeline {
+            border-left: 2px solid var(--primary);
+            padding-left: 25px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -34px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--secondary);
+            box-shadow: 0 0 15px var(--secondary);
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 3px;
+        }
+
+        .project-card {
+            min-height: 210px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card .tags {
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 9px;
+            margin: 3px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--secondary);
+            background: rgba(32,191,255,0.1);
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 9px;
+            margin-top: 18px;
+        }
+
+        .small-btn {
+            padding: 8px 11px;
+            border: 1px solid var(--card-border);
+            border-radius: 7px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .small-btn:hover {
+            color: var(--text);
+            border-color: var(--secondary);
+        }
+
+        .learning-card {
+            text-align: center;
+        }
+
+        .learning-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .resume-box {
+            text-align: center;
+            padding: 45px 20px;
+            background: linear-gradient(135deg, rgba(124,92,255,0.18), rgba(32,191,255,0.12));
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .contact-link {
+            padding: 12px 16px;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 45px 0 25px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                flex-direction: column;
+                background: var(--bg);
+                border-bottom: 1px solid var(--card-border);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: inline-block;
+                margin-left: 8px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 27px;
+            }
+
+            section {
+                padding-top: 75px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">DP.</a>
+
+                <div class="nav-links" id="navLinks">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#education">Education</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#learning">Learning</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div>
+                    <button class="theme-btn" id="themeBtn">☀</button>
+                    <button class="menu-btn" id="menuBtn">☰</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero" id="home">
+            <div>
+                <div class="badge">● Current Student</div>
+
+                <h1>Hi, I'm <span>Dhwanit Pandya</span></h1>
+
+                <h2>Aspiring Software Developer & Computer Science Student</h2>
+
+                <p>
+                    I am interested in programming, mathematics, technology and
+                    problem-solving. I am continuously developing my technical skills
+                    and exploring how software can solve real-world problems.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn primary">View Projects</a>
+                    <a href="resume.pdf" download class="btn">Download Resume</a>
+                    <a href="#contact" class="btn">Contact Me</a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <!-- Upload a photo named profile-photo.jpg in this same folder later -->
+                <div class="profile-photo">
+                    <img src="profile-photo.jpg" alt="Dhwanit Pandya"
+                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+                    <span>DP</span>
+                </div>
+
+                <h3>Dhwanit Pandya</h3>
+                <p>B.Tech Computer Science & Applied Mathematics</p>
+                <p>Adani University · 2025–2029</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">A student, learner and aspiring developer.</p>
+
+            <div class="card">
+                <p class="about-text">
+                    I am pursuing a B.Tech in Computer Science & Applied Mathematics
+                    at Adani University. I am interested in software development,
+                    programming, data structures, mathematics, databases, web
+                    development and cybersecurity. I continuously learn new
+                    technologies and work on improving my technical and
+                    problem-solving skills.
+                    <br><br>
+                    Apart from academics, I enjoy drawing, music, playing guitar and
+                    participating in events. These creative activities help me
+                    maintain a balanced personality and explore ideas beyond
+                    academics.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <p class="section-subtitle">
+                Current student-level skills. The visual bars are editable and are
+                not formal professional ratings.
+            </p>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Programming</h3>
+
+                    <div class="skill">
+                        <div class="skill-info"><span>C</span><span>Learning</span></div>
+                        <div class="bar"><span style="width:55%"></span></div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-info"><span>C++</span><span>Learning</span></div>
+                        <div class="bar"><span style="width:45%"></span></div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-info"><span>Python</span><span>Learning</span></div>
+                        <div class="bar"><span style="width:42%"></span></div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-info"><span>Java</span><span>Learning</span></div>
+                        <div class="bar"><span style="width:35%"></span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Web Development</h3>
+
+                    <div class="skill">
+                        <div class="skill-info"><span>HTML</span><span>Learning</span></div>
+                        <div class="bar"><span style="width:55%"></span></div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-info"><span>CSS</span><span>Learning</span></div>
+                        <div class="bar"><span style="width:45%"></span></div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-info"><span>JavaScript</span><span>Exploring</span></div>
+                        <div class="bar"><span style="width:30%"></span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Computer Science</h3>
+
+                    <ul>
+                        <li>▹ Data Structures & Algorithms</li>
+                        <li>▹ Object-Oriented Programming</li>
+                        <li>▹ Database Management Systems</li>
+                        <li>▹ Git and GitHub</li>
+                        <li>▹ Mathematics</li>
+                        <li>▹ Cybersecurity</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">My academic journey.</p>
+
+            <div class="card timeline">
+                <div class="timeline-item">
+                    <h3>B.Tech — Computer Science & Applied Mathematics</h3>
+                    <p>Adani University</p>
+                    <p>2025–2029 · Currently pursuing</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">
+                Projects will be added here as I build and complete them.
+            </p>
+
+            <div class="grid">
+                <div class="card project-card">
+                    <h3>Project Coming Soon</h3>
+                    <p>
+                        This space is reserved for a future project. Add a truthful
+                        description after completing your project.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">Technology to be added</span>
+                    </div>
+
+                    <div class="card-buttons">
+                        <a href="#" class="small-btn">GitHub</a>
+                        <a href="#" class="small-btn">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates">
+            <h2 class="section-title">Certificates</h2>
+            <p class="section-subtitle">Certificates can be displayed here.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Certificate Coming Soon</h3>
+                    <p>Issuing organization: To be added</p>
+                    <p>Date: To be added</p>
+
+                    <div class="card-buttons">
+                        <a href="#" class="small-btn">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <h2 class="section-title">Achievements</h2>
+            <p class="section-subtitle">
+                This section will contain only achievements that I provide.
+            </p>
+
+            <div class="card">
+                <p>No achievements added yet.</p>
+            </div>
+        </section>
+
+        <section id="learning">
+            <h2 class="section-title">Currently Exploring</h2>
+            <p class="section-subtitle">
+                My learning journey is continuously growing.
+            </p>
+
+            <div class="grid">
+                <div class="card learning-card">
+                    <div class="learning-icon">💻</div>
+                    <h3>C++</h3>
+                    <p>Building programming fundamentals.</p>
+                </div>
+
+                <div class="card learning-card">
+                    <div class="learning-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Exploring programming and applications.</p>
+                </div>
+
+                <div class="card learning-card">
+                    <div class="learning-icon">🧠</div>
+                    <h3>Data Structures & Algorithms</h3>
+                    <p>Improving logical and problem-solving skills.</p>
+                </div>
+
+                <div class="card learning-card">
+                    <div class="learning-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>Learning how websites are designed and built.</p>
+                </div>
+
+                <div class="card learning-card">
+                    <div class="learning-icon">🗄️</div>
+                    <h3>Databases</h3>
+                    <p>Understanding data storage and management.</p>
+                </div>
+
+                <div class="card learning-card">
+                    <div class="learning-icon">🔐</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Exploring secure systems and digital safety.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume">
+            <div class="card resume-box">
+                <h2 class="section-title">My Resume</h2>
+                <p class="section-subtitle">
+                    Upload your resume as <b>resume.pdf</b> in the same folder as this
+                    HTML file.
+                </p>
+
+                <a href="resume.pdf" download class="btn primary">
+                    Download Resume
+                </a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contact & Social Links</h2>
+            <p class="section-subtitle">
+                Replace these placeholder links with your actual public links.
+            </p>
+
+            <div class="card">
+                <div class="contact-links">
+                    <!-- Replace the # links below with your real links -->
+                    <a href="https://github.com/your-username" target="_blank"
+                       class="contact-link">⌘ GitHub</a>
+
+                    <a href="https://www.linkedin.com/in/your-username"
+                       target="_blank" class="contact-link">in LinkedIn</a>
+
+                    <a href="mailto:your.email@example.com"
+                       class="contact-link">✉ Email</a>
+
+                    <a href="#home" class="contact-link">🌐 Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Dhwanit Pandya · Built while learning and growing.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById("themeBtn");
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        themeBtn.addEventListener("click", function () {
+            document.body.classList.toggle("light");
+            themeBtn.textContent =
+                document.body.classList.contains("light") ? "☾" : "☀";
+        });
+
+        menuBtn.addEventListener("click", function () {
+            navLinks.classList.toggle("show");
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("show");
+            });
+        });
+    </script>
+
+</body>
+</html>
