@@ -108,7 +108,7 @@ My academic, web development, Python, database and cybersecurity projects will b
 ## Connect With Me
 
 * **GitHub:** [github.com/pandya-dhwanit](https://github.com/pandya-dhwanit)
-* **Portfolio:** [View my portfolio](https://dhwanit-pandya-portfolio.round-reed-6783.chatgpt.site)
+* **Portfolio:** [View my portfolio](https://pandya-dhwanit.github.io/pandya-dhwanit/)
 * **LinkedIn:** [Dhwanit Pandya](https://www.linkedin.com/in/dhwanit-pandya/)
 * **Email:** [dhwanit.pandya17@gmail.com](mailto:dhwanit.pandya17@gmail.com)
 
